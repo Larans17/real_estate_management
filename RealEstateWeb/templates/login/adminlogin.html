@@ -1,0 +1,54 @@
+{% extends 'login/main.html' %}
+{% load static %}
+{% block header %}
+<title>Admin login</title>
+{% endblock header %}
+{% block content %}
+
+<div class="signin-panel">
+    <div class="signin-sidebar">
+        <div class="signin-sidebar-body">
+            <div class="admin-logo text-purple mg-b-40">
+                <img src="{% static 'images/reallogo.png' %}">
+                <h2>RealEstate</h2>
+            </div>
+            <h4 class="signin-title">Welcome back!</h4>
+            <div class="text-muted">Please login to continue.</div>
+            <form method="POST" action="{% url 'login' %}" id="loginform" onsubmit=" return validateLogin()">
+                {% csrf_token %}
+                <div class="form-group mt-4">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="txtusername" id="txtusername" 
+                        value="" autocomplete="off">
+                        <span id="spanEmail" class="text-danger mt-0 p-0"></span> 
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="txtpassword" id="txtpassword" class="form-control" value="{{password}}"
+                        data-name="password" validate>
+                    <span id="spanpassword" class="text-danger mt-0 p-0"></span>
+                    
+                </div>
+
+                <div class="form-group d-flex mg-b-0">
+                    <button type="submit" class="btn btn-brand-01 flex-fill">Login</button>
+                </div>
+           
+        </form>
+        </div>
+    </div>
+</div>
+
+
+   
+</div>
+
+
+
+
+
+    {% endblock content %}
+
+    {% block footer %}
+    <script src="{% static 'js/pages/login/admin-login.js' %}"></script>
+    {% endblock footer %}

@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include 'mainheader.html' %}
+{% block header %}
+{% endblock header %}
+</head>
+
+<body>
+
+  <!-- side nav  -->
+
+  {% include 'sidenav.html' %}
+  <!--  -->
+
+  <div class="content content-page">
+
+  <!-- top nav  -->
+  {% include 'topnav.html' %}
+  <!--  -->
+
+
+    {% block contentheader %}
+    {% endblock contentheader %}
+    <div class="content-body">
+      {% block content %}
+     
+      {% endblock content %}
+    </div>
+    {% include "mainfooter.html" %}
+    {% block footer %}
+    {% endblock footer %}
+  </div>
+
+</body>
+
+</html>
+
+
+
+<!-- in this include page for modal -->
+{% comment %} {% include 'common-modal.html' %} {% endcomment %}

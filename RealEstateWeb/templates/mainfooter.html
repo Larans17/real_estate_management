@@ -1,0 +1,51 @@
+{% load static %}
+
+<!----- library js-->
+<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'lib/jquery-ui/jquery-ui.js' %}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'lib/feather-icons/feather.min.js' %}"></script>
+<script src="{% static 'lib/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'lib/select2/js/select2.full.min.js' %}"></script>
+<script src="{% static 'lib/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/datatables.net-dt/js/dataTables.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/sweetalert2/sweetalert2.min.js' %}"></script>
+
+<!----- theme js-->
+<script src="{% static 'js/eventjam.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/admin-main.js' %}"></script>
+
+
+<script>
+    function showMsg(msg, type, timer = 3000) {
+      const Toast = Swal.mixin({
+        customClass: {
+          popup: 'swal2-' + (type == 1 ? 'success' : 'error'),
+          icon: 'swal2-icon-hide',
+        },
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: timer,
+        timerProgressBar: false,
+      });
+  
+      Toast.fire({
+        imageUrl: (type == 1 ? "{% static 'images/icons/ico_success_toast.svg' %}" : "{% static '/images/icons/ico_error_toast.svg' %}"),
+        title: msg
+      })
+    }
+  
+</script>
+
+{% if messages %}
+{% for message in messages %}
+<script>
+    var errorcode = '{{message.tags}}' == 'success' ? 1 : 2;
+    showMsg('{{message}}', errorcode);
+</script>
+{% endfor %}
+{% endif %}

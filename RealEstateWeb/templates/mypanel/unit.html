@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block contentheader %}
+<div class="content-body-header border-bottom">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="page-title">
+            <h5 id="h5Title"> Add New Unit</h5>
+        </div>
+    </div>
+</div>
+{% endblock contentheader %}
+
+{% block content %}
+
+<div class="component-section">
+    <div id="unit_form_div">
+        <form method="POST" action="#" id="unit_form" data-parsley-validate="" novalidate="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                        <label>Property Name</label>
+                        <select class="form-control select2-no-search" id="ddlproperty" name="ddlproperty"
+                        tabindex="-1" aria-hidden="true" data-name="property name" validate>
+                        <option value="0">Select Property</option>
+                        {% for pro in property %}
+                        <option value="{{pro.propertyid}}">{{pro.name}}</option>
+                        {% endfor %}
+                        </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label>Unit Type</label>
+                    <select class="form-control select2-no-search" id="ddlunittype" name="ddlunittype"
+                        tabindex="-1" aria-hidden="true" data-name="unit type" validate>
+                        <option value="0">Select UnitType</option>
+                        <option value="1BHK">1BHK</option>
+                        <option value="2BHK">2BHK</option>
+                        <option value="3BHK">3BHK</option>
+                        <option value="4BHK">4BHK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label>Rent Cost</label>
+                    <input type="text" name="txtrentcost" id="txtrentcost" class="form-control "
+                            data-name="Features" placeholder="₹ 0.00" validate>
+                </div>
+               
+            </div>
+            
+
+            <div class="d-none d-sm-flex mg-t-20">
+                <button type="reset" class="btn btn-light mg-l-2">Cancel</button>
+                <button type="button" id="save-btn" onclick="fromSubmit('unit_form')" class="btn btn-brand-01 mg-l-5">Save</button>
+            </div>
+        </form>
+    </div><!-- card -->
+</div><!-- component-section -->
+
+
+
+<div class="row mg-t-30">
+    <div class="col-md-12">
+        <h5 id="h5Title">List Of Unit</h5>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">SL.No</th>
+                                <th scope="col">Property Name</th>
+                                <th scope="col">Unit Type</th>
+                                <th scope="col">Rent Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unit_table_data">
+                           
+                        </tbody>
+                    </table>
+                </div>
+        
+            </div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+<script src="{% static 'js/mypanel/unit.js' %}"></script>
+{% endblock footer %}

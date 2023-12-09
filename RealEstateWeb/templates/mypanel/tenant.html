@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block contentheader %}
+<div class="content-body-header border-bottom">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="page-title">
+            <h5 id="h5Title"> Add New Tenant</h5>
+        </div>
+    </div>
+</div>
+{% endblock contentheader %}
+
+{% block content %}
+
+<div class="component-section">
+    <div id="tenant_form_div">
+        <form method="POST" action="#" id="tenant_form" data-parsley-validate="" novalidate="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                        <label>Tenant Name</label>
+                        <input type="text" name="txtname" id="txtname" class="form-control "
+                                data-name="Tenant name" placeholder="Enter Name"validate>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Unit</label>
+                    <select class="form-control select2-no-search" id="ddlunit" name="ddlunit"
+                        tabindex="-1" aria-hidden="true" data-name="Unit" validate>
+                        <option value="0">Select Unit</option>
+                        {% for tenant in tenant_list %}
+                        <option value="{{tenant.unitid}}">{{tenant.unit_type}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Address</label>
+                    <input type="text" name="txtaddress" id="txtaddress" class="form-control "
+                            data-name="Location" placeholder="Write here..." validate>
+                </div>
+            </div>
+            <div class="row mg-t-20">
+                <div class="col-sm-4 form-group">
+                    <label>Document</label>
+                    <input type="file" name="documents" id="documents" accept=".png, .jpg, .jpeg .pdf">
+
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Agreement Enddate</label>
+                    <input type="text" name="txtenddate" id="datepicker1" class="form-control "
+                            data-name="Address" placeholder="dd/mm/yyyy" validate>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Monthly Rentdate</label>
+                    <input type="text" name="txtrentdate" id="datepicker2" class="form-control "
+                            data-name="Address" placeholder="dd/mm/yyyy" validate>
+                </div>
+            </div>
+
+            <div class="d-none d-sm-flex mg-t-20">
+                <button type="reset" class="btn btn-light mg-l-2">Cancel</button>
+                <button type="button" id="save-btn" onclick="fromSubmit('tenant_form')" class="btn btn-brand-01 mg-l-5">Save</button>
+            </div>
+        </form>
+    </div><!-- card -->
+</div><!-- component-section -->
+
+
+
+<div class="row mg-t-30">
+    <div class="col-md-12">
+        <h5 id="h5Title">List Of Tenant</h5>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">SL.No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">documents</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Agreement Enddate</th>
+                                <th scope="col">Monthly Rentdate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tenant_table_data">
+                           
+                        </tbody>
+                    </table>
+                </div>
+        
+            </div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+<script src="{% static 'js/mypanel/tenant.js' %}"></script>
+{% endblock footer %}

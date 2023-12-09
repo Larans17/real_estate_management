@@ -1,0 +1,29 @@
+{% load static %}
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="admin-logo ">
+      <a href="{% url 'dashboard' %}">
+        <img src="{% static 'images/reallogo.png' %}" alt="">
+        {% comment %} <h5 class="text-purple fw-600 fs-22 mg-t-20">RealEstate</h5> {% endcomment %}
+      </a>
+    </div>
+
+  </div><!-- sidebar-header -->
+  <div id="dpSidebarBody" class="sidebar-body">
+    <ul class="nav nav-sidebar">
+      <li class="nav-item">
+        <a href="/create/property/" class="nav-link "><i data-feather="layout"></i> Property</a>
+      </li>
+      <li class="nav-item">
+        <a href="/create/unit/" class="nav-link "><i data-feather="layers"></i>Unit</a>
+      </li>
+      <li class="nav-item">
+        <a href="/create/tenant/" class="nav-link "><i data-feather="user"></i>Tenant</a>
+      </li>
+    </ul> 
+    
+
+
+  </div><!-- sidebar-body -->
+</div>
